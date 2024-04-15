@@ -1,0 +1,6 @@
+*pyc
+/api/v1/.DS_Store
+/api/.DS_Store
+/api/__pycache__/
+/api/v1/views/__pycache__/
+
