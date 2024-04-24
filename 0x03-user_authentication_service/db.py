@@ -42,7 +42,7 @@ class DB:
         self._session.commit()
         return user
 
-    def find_user_by(self, **kwargs) -> None:
+    def find_user_by(self, **kwargs) -> User:
         """
         implements find_user_by method using
         arbitrary keyword args and returns
@@ -57,7 +57,7 @@ class DB:
                     return usr
         raise NoResultFound
 
-    def update_user(self, user_id: int, **kwargs) -> User:
+    def update_user(self, user_id: int, **kwargs) -> None:
         """
         implements update_user method that takes
         required user_id integer and arbitrary
