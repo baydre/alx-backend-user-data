@@ -42,7 +42,7 @@ class DB:
         self._session.commit()
         return user
 
-    def find_user_by(self, **kwargs) -> User:
+    def find_user_by(self, **kwargs) -> None:
         """
         implements find_user_by method using
         arbitrary keyword args and returns
