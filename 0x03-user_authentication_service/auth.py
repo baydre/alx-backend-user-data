@@ -26,7 +26,6 @@ def _hash_password(password: str) -> bytes:
 class Auth:
     """Auth class to interact with authentication database.
     """
-
     def __init__(self):
         self._db = DB()
 
@@ -48,3 +47,17 @@ class Auth:
             return new_user
         else:
             raise ValueError(f"User {email} already exists.")
+
+
+    def valid_login(self, email: str, password: str) -> bool:
+        """
+        implements Auth.valid_login method and
+        returns boolean.
+        """
+        try:
+            user = self._db.find_user_by(email=email)
+        except NoResultFound:
+            return False
+        else:
+            return bcrypt.checkpw(password=password.encode('utf-8'),
+                    hashed_password=user.hashed_password)
