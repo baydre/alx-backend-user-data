@@ -48,7 +48,6 @@ class Auth:
         else:
             raise ValueError(f"User {email} already exists.")
 
-
     def valid_login(self, email: str, password: str) -> bool:
         """
         implements Auth.valid_login method and
@@ -60,4 +59,4 @@ class Auth:
             return False
         else:
             return bcrypt.checkpw(password=password.encode('utf-8'),
-                    hashed_password=user.hashed_password)
+                                  hashed_password=user.hashed_password)
