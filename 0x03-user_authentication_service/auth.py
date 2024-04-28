@@ -84,7 +84,7 @@ class Auth:
             self._db.update_user(user.id, session_id=session_id)
             return session_id
 
-    def get_user_from_session_id() -> Optional[User]:
+    def get_user_from_session_id(self, session_id:str) -> Optional[User]:
         """
         implements get_user_from_session_id method
         takes single string args & returns the User or None.
