@@ -7,6 +7,7 @@ from db import DB
 from sqlalchemy.orm.exc import NoResultFound
 from uuid import uuid4
 from user import User
+from typing import Optional
 
 
 def _hash_password(password: str) -> bytes:
@@ -71,6 +72,8 @@ class Auth:
 
     def create_session(self, email: str) -> str:
         """
+        implements login function to
+        respond to the POST /sessions route.
         """
         try:
             user = self._db.find_user_by(email=email)
@@ -80,3 +83,18 @@ class Auth:
             session_id = _generate_uuid()
             self._db.update_user(user.id, session_id=session_id)
             return session_id
+
+    def get_user_from_session_id() -> Optional[User]:
+        """
+        implements get_user_from_session_id method
+        takes single string args & returns the User or None.
+        """
+        if session_id is None:
+            return None
+
+        try:
+            user = self._db.find_user_by(session_id=session_id)
+        except NoResultFound:
+            return None
+        else:
+            return user
